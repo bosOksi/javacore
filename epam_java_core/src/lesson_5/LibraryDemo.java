@@ -38,8 +38,8 @@ public class LibraryDemo {
         book1.setAuthors(new Author[]{author});
         book2.setAuthors(new Author[]{author});
 
-        library.addBook(book1);
-        library.addBook(book2);
+        //library.addBook(book1);
+        //library.addBook(book2);
         library.addAuthor(author);
 
     }

@@ -26,12 +26,12 @@ public final class Storage {
 
     public static void increaseAuthorsStorage() {
         Author[] authors = new Author[authorIndex + CAPACITY];
-        System.arraycopy(Storage.authors, authorIndex, authors, authorIndex, authorIndex + CAPACITY);
+        System.arraycopy(Storage.authors, authorIndex, authors, authorIndex, CAPACITY);
     }
 
     public static void increaseBooksStorage() {
         Book[] books = new Book[bookIndex + CAPACITY];
-        System.arraycopy(Storage.books, bookIndex, books, bookIndex, bookIndex + CAPACITY);
+        System.arraycopy(Storage.books, bookIndex, books, bookIndex, CAPACITY);
         Storage.books = books;
     }
 

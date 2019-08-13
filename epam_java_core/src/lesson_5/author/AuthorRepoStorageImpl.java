@@ -20,18 +20,28 @@ public class AuthorRepoStorageImpl implements AuthorRepo {
 
     @Override
     public void searchAuthor(Author author) {
-        for (int i = 0; i< authors.length; i++) {
+        for (int i = 0; i < authors.length; i++) {
+            boolean isInStorage = false;
             if (author.equals(authors[i])) {
                 System.out.println("Author " + author + " is in storage");
+                isInStorage = true;
             } else {
-                System.out.println("Author " + author + " is not found in storage");
+                if (isInStorage) {
+                    System.out.println("Author " + author + " is not found in storage");
+                }
             }
         }
     }
 
     @Override
     public int getCountOfAuthor() {
-        return authors.length;
+        int count=authors.length;
+        for (int i = 0; i < authors.length; i++) {
+            if (authors[i] == null) {
+                count -= 1;
+            }
+        }
+        return count;
     }
 
     @Override
@@ -41,6 +51,16 @@ public class AuthorRepoStorageImpl implements AuthorRepo {
 
     @Override
     public void removeAuthor(Author author) {
-
+        int j=0;
+        for (int i = 0; i < authors.length; i++) {
+            if (author.equals(authors[i])) {
+                authors[i] = null;
+                System.out.println("Author " + author + " removed from storage");
+                j += 1;
+            }
+        }
+        if (j==0) {
+            System.out.println("Author " + author + " is not found in storage");
+        }
     }
 }

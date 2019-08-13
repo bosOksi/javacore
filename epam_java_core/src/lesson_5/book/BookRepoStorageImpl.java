@@ -2,6 +2,9 @@ package lesson_5.book;
 
 import lesson_5.Storage;
 
+import java.util.Comparator;
+
+import static java.lang.Character.toLowerCase;
 import static lesson_5.Storage.*;
 import static lesson_5.Storage.books;
 
@@ -18,31 +21,60 @@ public class BookRepoStorageImpl implements BookRepo {
         increaseBookIndex();
     }
 
+    @Override
+    public int getCountOfBooks() {
+        int count = books.length;
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] == null) {
+                count -= 1;
+            }
+        }
+        return count;
+    }
 
-    //почитать про метод сравнени строк equals
     @Override
     public void searchBook(Book book) {
-        for (int i = 0; i< books.length; i++) {
+        for (int i = 0; i < books.length; i++) {
+            boolean isInStorage = false;
             if (book.equals(books[i])) {
                 System.out.println("The book " + book + " is in storage");
+                isInStorage = true;
             } else {
-                System.out.println("The book " + book + " is not found in storage");
+                if (isInStorage) {
+                    System.out.println("The book " + book + " is not found in storage");
+                }
             }
         }
     }
 
     @Override
-    public int getCountOfBooks() {
-        return books.length;
-    }
-
-    @Override
     public void getBooksSortedByName() {
+        /*for (int i = 0; i< books.length;i++) {
+            for (int j=1; j < books[i].name.length(); j++) {
+                Character letterOfBookName = (Character)books[i].name.charAt(j);
+                Character letterOfBookNameInLowerCase = toLowerCase(letterOfBookName);
+                Character[] lettersOfBookNameInLowerCase = new Character[books[i].name.length()];
+                lettersOfBookNameInLowerCase.add();
+                if (letterOfBookNameInLowerCase.charValue()< letterOfBookNameInLowerCase.charValue()[i - 1]);
+            }
+        }*/
 
+        System.out.println("Books sorted by name");
     }
+
 
     @Override
     public void removeBook(Book book) {
-
+        int j=0;
+        for (int i = 0; i < books.length; i++) {
+            if (book.equals(books[i])) {
+                books[i] = null;
+                System.out.println("The book " + book + " removed from storage");
+                j += 1;
+            }
+        }
+        if (j==0) {
+            System.out.println("The book " + book + " is not found in storage");
+        }
     }
 }
