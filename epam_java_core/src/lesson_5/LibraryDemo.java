@@ -1,23 +1,53 @@
 package lesson_5;
 
-import lesson_5.author.Author;
-import lesson_5.author.InputAuthor;
-import lesson_5.book.Book;
-import lesson_5.book.InputBook;
-import lesson_5.book.PrintedBook;
-import lesson_5.book.WrittenBook;
+import lesson_5.author.*;
+import lesson_5.author.domain.Author;
+import lesson_5.author.repo.AuthorRepo;
+import lesson_5.author.repo.AuthorRepoArrayImpl;
+import lesson_5.author.service.AuthorService;
+import lesson_5.author.service.AuthorServiceImpl;
+import lesson_5.book.*;
+import lesson_5.book.domain.PrintedBook;
+import lesson_5.book.domain.WrittenBook;
+import lesson_5.book.repo.BookRepo;
+import lesson_5.book.repo.BookRepoArrayImpl;
 
 public class LibraryDemo {
+    /**
+     *  When delete Author
+     *
+     *  Look for books where author present, and remove him from book
+     *
+     *  if (book.getAuthorCount == 0){
+     *      dropBook()
+     *  }
+     *
+     *
+     * ----------
+     * When delete book
+     * Delete book from storage
+     */
     public static void main(String[] args) {
+        //String storageType = "arrays";
+        String storageType = "collection";
+        BookRepo bookRepo = null;
+        AuthorRepo authorRepo = null;
 
-        Library library = new Library();
-        initData(library);
+        if (storageType.equals("arrays")){
+            bookRepo = new BookRepoArrayImpl();
+            authorRepo = new AuthorRepoArrayImpl();
+        }else if (storageType.equals("collection")){
+            //bookRepo = new BookRepoCollectionImpl();
+            //authorRepo = new AuthorRepoCollectionImpl();
+        }
+        AuthorService authorService = new AuthorServiceImpl(authorRepo,bookRepo);
+        initData(bookRepo, authorService);
 
-        library.printAuthors();
-        library.printBooks();
+        bookRepo.print();
+        authorRepo.print();
     }
 
-    private static void initData(Library library) {
+    private static void initData(BookRepo bookRepo, AuthorService authorService) {
         InputBook inputBook1 = new InputBook();
         inputBook1.setName("Evgeny Onegin");
         inputBook1.setPublishYear(1990);
@@ -38,9 +68,10 @@ public class LibraryDemo {
         book1.setAuthors(new Author[]{author});
         book2.setAuthors(new Author[]{author});
 
-        //library.addBook(book1);
-        //library.addBook(book2);
-        library.addAuthor(author);
+        bookRepo.add(book1);
+        bookRepo.add(book2);
+
+        authorService.add(author);
 
     }
 

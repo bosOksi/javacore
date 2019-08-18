@@ -1,6 +1,7 @@
 package lesson_5.book;
 
-import lesson_5.author.Author;
+import lesson_5.author.domain.Author;
+import lesson_5.book.domain.BookGenre;
 
 public abstract class Book {
 
@@ -58,15 +59,23 @@ public abstract class Book {
     public Author[] getAuthors() {
         return authors;
     }
+    
+    public void deleteAuthor(Author author) {
+        
+    }
 
     @Override
     public String toString() {
-        return "book{" +
+        return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", publishYear=" + publishYear +
                 ", totalPages=" + totalPages +
                 '}';
+    }
+
+    public boolean withoutAuthors() {
+        return false;
     }
 }
 
