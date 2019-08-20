@@ -4,6 +4,7 @@ import lesson_5.author.*;
 import lesson_5.author.domain.Author;
 import lesson_5.author.repo.AuthorRepo;
 import lesson_5.author.repo.AuthorRepoArrayImpl;
+import lesson_5.author.repo.AuthorRepoCollectionImpl;
 import lesson_5.author.service.AuthorService;
 import lesson_5.author.service.AuthorServiceImpl;
 import lesson_5.book.*;
@@ -11,6 +12,7 @@ import lesson_5.book.domain.PrintedBook;
 import lesson_5.book.domain.WrittenBook;
 import lesson_5.book.repo.BookRepo;
 import lesson_5.book.repo.BookRepoArrayImpl;
+import lesson_5.book.repo.BookRepoCollectionImpl;
 
 public class LibraryDemo {
     /**
@@ -37,8 +39,8 @@ public class LibraryDemo {
             bookRepo = new BookRepoArrayImpl();
             authorRepo = new AuthorRepoArrayImpl();
         }else if (storageType.equals("collection")){
-            //bookRepo = new BookRepoCollectionImpl();
-            //authorRepo = new AuthorRepoCollectionImpl();
+            bookRepo = new BookRepoCollectionImpl();
+            authorRepo = new AuthorRepoCollectionImpl();
         }
         AuthorService authorService = new AuthorServiceImpl(authorRepo,bookRepo);
         initData(bookRepo, authorService);
