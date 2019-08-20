@@ -1,15 +1,26 @@
 package lesson_5.author.repo;
 
 import lesson_5.author.domain.Author;
-
-import static lesson_5.Storage.*;
+import static lesson_5.Storage.increaseAuthorIndex;
+import static lesson_5.Storage.increaseAuthorsStorage;
 
 
 public class AuthorRepoArrayImpl implements AuthorRepo {
+    public static final int CAPACITY = 10;
+    public static Author[] authors = new Author[CAPACITY];
+    public static int authorIndex = 0;
+    public static Long authorId = 1L;
 
     @Override
     public Long add(Author author) {
-        addAuthor(author);
+        author.setId(authorId);
+        if (authorIndex % (CAPACITY) == 0 && authorIndex != 0) {
+            increaseAuthorsStorage();
+        } else {
+            authors[authorIndex] = author;
+        }
+        increaseAuthorIndex();
+        authorId++;
         return author.getId();
     }
 
@@ -51,6 +62,21 @@ public class AuthorRepoArrayImpl implements AuthorRepo {
 
     @Override
     public void delete(Author author) {
-        removeAuthor(author);
+        for (int i = 0; i < authors.length; i++) {
+            if (author.getId().equals(authors[i].getId())) {
+                authors[i] = null;
+                authorIndex--;
+                break;
+            }
+        }
+        Author[] newAuthors = new Author[authors.length];
+        int index = 0;
+        for (Author a: authors) {
+            if (a != null) {
+                newAuthors[index] = a;
+                index++;
+            }
+        }
+        authors = newAuthors;
     }
 }
