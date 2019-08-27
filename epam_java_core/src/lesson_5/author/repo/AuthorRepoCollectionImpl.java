@@ -1,55 +1,48 @@
 package lesson_5.author.repo;
 
 import lesson_5.author.domain.Author;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import lesson_5.storage.CollectionStorage;
 
+import java.util.Collection;
+import java.util.Collections;
+
+import static lesson_5.storage.CollectionStorage.getAllAuthors;
 
 public class AuthorRepoCollectionImpl implements AuthorRepo {
 
-    public static List<Author> authorsList = new ArrayList<>();
-    public static Long authorId = 1L;
-
     @Override
     public Long add(Author author) {
-        author.setId(authorId);
-        authorsList.add(author);
-        authorId++;
+        CollectionStorage.addAuthor(author);
         return author.getId();
     }
 
     @Override
+    public int count() {
+        return CollectionStorage.getTotalAuthors();
+    }
+
+    @Override
     public void print() {
-        for (Author author : authorsList) {
+        for (Author author : getAllAuthors()) {
             if (author != null) {
                 System.out.println(author.toString());
             }
         }
-
-    }
-
-    @Override
-    public int count() {
-        int count = 0;
-        for (Author author: authorsList) {
-            if (author != null) {
-                count++;
-            }
-        }
-        return count;
     }
 
     @Override
     public void delete(Author author) {
-        Iterator<Author> iter = authorsList.iterator();
-        while (iter.hasNext()) {
-            Author i = iter.next();
-            if (i.getId().equals(author.getId())) {
-                iter.remove();
-                break;
-            }
-        }
-
+        CollectionStorage.removeAuthor(author);
     }
+
+    /*@Override
+    public Author[] getAuthorsAsArraySortedByLastName() {
+        return getAuthorsAsCollectionSortedByLastName.toArray(new Author[0]);
+    }*/
+
+    /*@Override
+    public Author<> getAuthorsAsCollectionSortedByLastName() {
+    }*/
+
+
 }
