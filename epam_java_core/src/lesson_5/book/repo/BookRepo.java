@@ -2,11 +2,15 @@ package lesson_5.book.repo;
 
 import lesson_5.book.Book;
 
+import java.util.List;
+
 public interface BookRepo {
     Long add(Book book);
     void print();
     int count();
-    //void getBooksSortedByName();
     void delete(Book book);
-    Book[] findBooksByAuthor(Long id);
+    Book[] findBooksByAuthorAsArray(long authorId);
+    List<Book> findBooksByAuthorAsCollection(long authorId);
+    //Book[] getBooksAsArraySortedByName();
+    //Book<> getBooksAsArraySortedByName();
 }
