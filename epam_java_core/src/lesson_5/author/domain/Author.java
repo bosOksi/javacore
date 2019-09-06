@@ -1,56 +1,45 @@
 package lesson_5.author.domain;
 
-import lesson_5.book.Book;
+import lesson_5.book.domain.Book;
+import lesson_5.common.domain.BaseDomain;
 
-public class Author {
+import java.util.List;
 
-    private Long id;
+public class Author extends BaseDomain<Long> {
     private String lastName;
     private String name;
     private int yearOfBorn;
-    private Book[] books;
+    private List<Book> books;
 
     public Author(Long id) {
-        this.id = id;
-    }
-
-    public void setId(Long id) {
         this.id = id;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    public String getLastName() {
+        return lastName;
+    }
 
     public void setName(String name) {
         this.name = name;
+    }
+    public String getName() {
+        return name;
     }
 
     public void setYearOfBorn(int yearOfBorn) {
         this.yearOfBorn = yearOfBorn;
     }
-
-    public void setBooks(Book[] books) {
-        this.books = books;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public int getYearOfBorn() {
         return yearOfBorn;
     }
 
-    public Book[] getBooks() {
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+    public List<Book> getBooks() {
         return books;
     }
 

@@ -1,16 +1,11 @@
 package lesson_5.book.repo;
 
-import lesson_5.book.Book;
+import lesson_5.book.domain.Book;
+import lesson_5.common.repo.BaseRepo;
 
 import java.util.List;
 
-public interface BookRepo {
-    Long add(Book book);
-    void print();
-    int count();
-    void delete(Book book);
+public interface BookRepo extends BaseRepo<Book,Long> {
     Book[] findBooksByAuthorAsArray(long authorId);
     List<Book> findBooksByAuthorAsCollection(long authorId);
-    //Book[] getBooksAsArraySortedByName();
-    //Book<> getBooksAsArraySortedByName();
 }

@@ -2,10 +2,6 @@ package lesson_5.author.repo;
 
 import lesson_5.author.domain.Author;
 import lesson_5.storage.CollectionStorage;
-
-import java.util.Collection;
-import java.util.Collections;
-
 import static lesson_5.storage.CollectionStorage.getAllAuthors;
 
 public class AuthorRepoCollectionImpl implements AuthorRepo {
@@ -18,7 +14,7 @@ public class AuthorRepoCollectionImpl implements AuthorRepo {
 
     @Override
     public int count() {
-        return CollectionStorage.getTotalAuthors();
+        return CollectionStorage.getTotalAuthorsAmount();
     }
 
     @Override
@@ -35,14 +31,16 @@ public class AuthorRepoCollectionImpl implements AuthorRepo {
         CollectionStorage.removeAuthor(author);
     }
 
-    /*@Override
-    public Author[] getAuthorsAsArraySortedByLastName() {
-        return getAuthorsAsCollectionSortedByLastName.toArray(new Author[0]);
-    }*/
+    @Override
+    public Author getById(Long id) {
+        for (Author author : CollectionStorage.getAllAuthors()) {
+            if (author != null && id.equals(author.getId())) {
+                return author;
+            }
+        }
+        return null;
+    }
 
-    /*@Override
-    public Author<> getAuthorsAsCollectionSortedByLastName() {
-    }*/
-
-
+    //public List<Author> SortedByNameAsCollection() {}
+    //public Author[] SortedByNameAsArray() {}
 }

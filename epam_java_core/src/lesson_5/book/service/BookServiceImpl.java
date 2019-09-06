@@ -1,15 +1,15 @@
 package lesson_5.book.service;
 
 import lesson_5.author.repo.AuthorRepo;
-import lesson_5.book.Book;
+import lesson_5.book.domain.Book;
 import lesson_5.book.repo.BookRepo;
 
+import java.util.List;
+
 public class BookServiceImpl implements BookService {
-    private final AuthorRepo authorRepo;
     private final BookRepo bookRepo;
 
-    public BookServiceImpl(AuthorRepo authorRepo, BookRepo bookRepo) {
-        this.authorRepo = authorRepo;
+    public BookServiceImpl(BookRepo bookRepo) {
         this.bookRepo = bookRepo;
     }
 
@@ -28,10 +28,30 @@ public class BookServiceImpl implements BookService {
         return bookRepo.count();
     }
 
-    //public void getBooksSortedByName() {authorRepo.getBooksSortedByName();}
-
     @Override
     public void delete(Book book) {
         bookRepo.delete(book);
     }
+
+    @Override
+    public Book getById(Long id) {
+        if (id != null) {
+            return bookRepo.getById(id);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public Book[] findBooksByAuthorAsArray(long authorId) {
+        return bookRepo.findBooksByAuthorAsArray(authorId);
+    }
+
+    @Override
+    public List<Book> findBooksByAuthorAsCollection(long authorId) {
+        return bookRepo.findBooksByAuthorAsCollection(authorId);
+    }
+
+    //public List<Book> SortedByNameAsCollection() {}
+    //public Book[] SortedByNameAsArray() {}
 }

@@ -1,11 +1,11 @@
 package lesson_5.book.service;
 
-import lesson_5.book.Book;
+import lesson_5.book.domain.Book;
+import lesson_5.common.service.BaseService;
 
-public interface BookService {
-    Long add(Book book);
-    void print();
-    int count();
-    //void getBooksSortedByName();
-    void delete(Book book);
+import java.util.List;
+
+public interface BookService extends BaseService<Book,Long> {
+    Book[] findBooksByAuthorAsArray(long authorId);
+    List<Book> findBooksByAuthorAsCollection(long authorId);
 }

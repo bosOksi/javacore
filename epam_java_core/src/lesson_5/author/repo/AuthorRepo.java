@@ -1,12 +1,7 @@
 package lesson_5.author.repo;
 
 import lesson_5.author.domain.Author;
+import lesson_5.common.repo.BaseRepo;
 
-public interface AuthorRepo {
-    Long add(Author author);
-    void print();
-    int count();
-    void delete(Author author);
-    //Author[] getAuthorsAsArraySortedByLastName();
-    //Author<> getAuthorsAsArraySortedByLastName();
+public interface AuthorRepo extends BaseRepo<Author, Long> {
 }

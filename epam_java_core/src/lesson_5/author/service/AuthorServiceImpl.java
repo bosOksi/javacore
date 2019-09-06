@@ -2,7 +2,7 @@ package lesson_5.author.service;
 
 import lesson_5.author.domain.Author;
 import lesson_5.author.repo.AuthorRepo;
-import lesson_5.book.Book;
+import lesson_5.book.domain.Book;
 import lesson_5.book.repo.BookRepo;
 
 public class AuthorServiceImpl implements AuthorService {
@@ -26,10 +26,8 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepo.count();
     }
 
-    //public void getAuthorsSortedByLastName() {authorRepo.getAuthorsSortedByLastName();}
-
     public void delete(Author author) {
-        Book[] booksWithAuthor = bookRepo.findBooksByAuthor(author.getId());
+        Book[] booksWithAuthor = bookRepo.findBooksByAuthorAsArray(author.getId());
         if (booksWithAuthor != null) {
             for (Book book : booksWithAuthor) {
                 book.deleteAuthor(author);
@@ -41,4 +39,15 @@ public class AuthorServiceImpl implements AuthorService {
         authorRepo.delete(author);
 
     }
+
+    @Override
+    public Author getById(Long id) {
+        if (id != null) {
+            return authorRepo.getById(id);
+        } else {
+            return null;
+        }
+    }
+
+    //public void getAuthorsSortedByLastName() {authorRepo.getAuthorsSortedByLastName();}
 }

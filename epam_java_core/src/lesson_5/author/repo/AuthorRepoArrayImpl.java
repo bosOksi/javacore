@@ -30,14 +30,16 @@ public class AuthorRepoArrayImpl implements AuthorRepo {
         ArrayStorage.removeAuthor(author);
     }
 
-    /*@Override
-    public Author[] getAuthorsAsArraySortedByLastName() {
-        return getAuthorsAsCollectionSortedByLastName().toArray(new Author[0]);
-    }*/
+    @Override
+    public Author getById(Long id) {
+        for (Author author : ArrayStorage.getAllAuthors()) {
+            if (author != null && id.equals(author.getId())) {
+                return author;
+            }
+        }
+        return null;
+    }
 
-    /*@Override
-    public Author<> getAuthorsAsCollectionSortedByLastName() {
-    }*/
-
-
+    //public List<Author> SortedByNameAsCollection() {}
+    //public Author[] SortedByNameAsArray() {]
 }

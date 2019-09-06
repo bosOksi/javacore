@@ -1,7 +1,7 @@
 package lesson_5.storage;
 
 import lesson_5.author.domain.Author;
-import lesson_5.book.Book;
+import lesson_5.book.domain.Book;
 
 
 public final class ArrayStorage {

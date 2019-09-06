@@ -1,7 +1,5 @@
 package lesson_5.book.domain;
 
-import lesson_5.book.Book;
-
 public class PrintedBook extends Book {
     private String fontFamily;
 
@@ -11,5 +9,12 @@ public class PrintedBook extends Book {
 
     public void setFontFamily(String fontFamily) {
         this.fontFamily = fontFamily;
+    }
+
+    @Override
+    public String toString() {
+        return "PrintedBook{" +
+                "fontFamily='" + fontFamily + '\'' +
+                '}';
     }
 }

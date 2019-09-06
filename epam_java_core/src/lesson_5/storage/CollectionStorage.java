@@ -1,10 +1,9 @@
 package lesson_5.storage;
 
 import lesson_5.author.domain.Author;
-import lesson_5.book.Book;
+import lesson_5.book.domain.Book;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,10 +11,8 @@ public final class CollectionStorage {
     private static List<Book> books = new ArrayList<>();
     private static List<Author> authors = new ArrayList<>();
 
-    private CollectionStorage() {
-    }
+    private CollectionStorage() {    }
 
-    //-----------Books---------------------------------------------------------
     public static List<Book> getAllBooks() {
         return books;
     }
@@ -40,12 +37,11 @@ public final class CollectionStorage {
         }
     }
 
-    //-----------Authors---------------------------------------------------------
     public static List<Author> getAllAuthors() {
         return authors;
     }
 
-    public static int getTotalAuthors() {
+    public static int getTotalAuthorsAmount() {
         return authors.size();
     }
 

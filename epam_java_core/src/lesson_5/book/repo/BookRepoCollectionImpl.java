@@ -1,7 +1,7 @@
 package lesson_5.book.repo;
 
 import lesson_5.author.domain.Author;
-import lesson_5.book.Book;
+import lesson_5.book.domain.Book;
 import lesson_5.storage.CollectionStorage;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,15 @@ public class BookRepoCollectionImpl implements BookRepo{
     }
 
     @Override
+    public Book getById(Long id) {
+        for (Book book : CollectionStorage.getAllBooks()) {
+            if (book != null && id.equals(book.getId())) {
+                return book;
+            }
+        }
+        return null;
+    }
+    @Override
     public Book[] findBooksByAuthorAsArray(long authorId) {
         return findBooksByAuthorAsCollection(authorId).toArray(new Book[0]);
     }
@@ -42,8 +51,7 @@ public class BookRepoCollectionImpl implements BookRepo{
     public List<Book> findBooksByAuthorAsCollection(long authorId) {
         List<Book> found = new ArrayList<>();
         for (Book b : CollectionStorage.getAllBooks()) {
-            Author authors[] = b.getAuthors();
-            for (Author a : authors) {
+            for (Author a : b.getAuthors()) {
                 if (a != null && authorId == a.getId()) {
                     found.add(b);
                     break;
@@ -53,12 +61,6 @@ public class BookRepoCollectionImpl implements BookRepo{
         return found;
     }
 
-    /*@Override
-    public Book[] getBooksAsArraySortedByName() {
-        return getBooksAsCollectionSortedByName().toArray(new Book[0]);
-    }*/
-
-    /*@Override
-    public Book<> getBooksAsCollectionSortedByName() {
-    }*/
+    //public List<Book> SortedByNameAsCollection() {}
+    //public Book[] SortedByNameAsArray() {}
 }
