@@ -21,27 +21,36 @@ import static lesson_5.common.utils.CollectionUtils.mutableCollectionOf;
 public class LibraryDemo {
 
     public static void main(String[] args) {
-
-        String storageType = "collection";
-        BookRepo bookRepo = null;
-        AuthorRepo authorRepo = null;
-
-        if (storageType.equals("arrays")){
-            bookRepo = new BookRepoArrayImpl();
-            authorRepo = new AuthorRepoArrayImpl();
-        }else if (storageType.equals("collection")){
-            bookRepo = new BookRepoCollectionImpl();
-            authorRepo = new AuthorRepoCollectionImpl();
-        }
-
-        AuthorService authorService = new AuthorServiceImpl(authorRepo,bookRepo);
-        BookService bookService = new BookServiceImpl(bookRepo);
-        initData(bookService, authorService);
-
-        bookService.print();
-        authorService.print();
+        initData(InitType.FROM_MEMORY);
     }
+    public static void initData(InitType initType) {
+        switch (initType) {
+            case FROM_FILE:
+                //////////////////////////////////////////
+                //////////////////////////////////////////
+                break;
+            case FROM_MEMORY:
+                String storageType = "collection";
+                BookRepo bookRepo = null;
+                AuthorRepo authorRepo = null;
 
+                if (storageType.equals("arrays")){
+                    bookRepo = new BookRepoArrayImpl();
+                    authorRepo = new AuthorRepoArrayImpl();
+                }else if (storageType.equals("collection")){
+                    bookRepo = new BookRepoCollectionImpl();
+                    authorRepo = new AuthorRepoCollectionImpl();
+                }
+
+                AuthorService authorService = new AuthorServiceImpl(authorRepo,bookRepo);
+                BookService bookService = new BookServiceImpl(bookRepo);
+                initData(bookService, authorService);
+
+                bookService.print();
+                authorService.print();
+                break;
+        }
+    }
     private static void initData(BookService bookService, AuthorService authorService) {
         InputBook inputBook1 = new InputBook();
         inputBook1.setName("Evgeny Onegin");

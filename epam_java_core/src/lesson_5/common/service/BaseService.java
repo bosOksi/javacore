@@ -6,6 +6,4 @@ public interface BaseService<T, ID> {
     void delete(T t);
     ID add(T t);
     T getById(ID id);
-    //List<T> SortedByNameAsCollection();
-    //T[] SortedByNameAsArray();
 }

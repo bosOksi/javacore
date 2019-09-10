@@ -11,7 +11,8 @@ public final class CollectionStorage {
     private static List<Book> books = new ArrayList<>();
     private static List<Author> authors = new ArrayList<>();
 
-    private CollectionStorage() {    }
+    private CollectionStorage() {
+    }
 
     public static List<Book> getAllBooks() {
         return books;
@@ -61,5 +62,39 @@ public final class CollectionStorage {
         }
     }
 
-
+    public static List<String> SortedBooksByName() {
+        List<String> SortedBooksNames = new ArrayList<>();
+        for (Book book : books) {
+            Iterator<Book> books = CollectionStorage.books.iterator();
+            while (books.hasNext() && book != null) {
+                int NamesMatches = book.getName().compareTo(books.next().getName());
+                if (NamesMatches < 0) {
+                    SortedBooksNames.add(book.getName());
+                    SortedBooksNames.add(books.next().getName());
+                } else {
+                    SortedBooksNames.add(books.next().getName());
+                    SortedBooksNames.add(book.getName());
+                }
+            }
+        }
+        return SortedBooksNames;
+    }
+    public static List<String> SortedAuthorsByLastName() {
+        List<String> SortedAuthorsLastNames = new ArrayList<>();
+        for (Author author : authors) {
+            Iterator<Author> authors = CollectionStorage.authors.iterator();
+            while (authors.hasNext() && author != null) {
+                int NamesMatches = author.getName().compareTo(authors.next().getName());
+                if (NamesMatches < 0) {
+                    SortedAuthorsLastNames.add(author.getName());
+                    SortedAuthorsLastNames.add(authors.next().getName());
+                } else {
+                    SortedAuthorsLastNames.add(authors.next().getName());
+                    SortedAuthorsLastNames.add(author.getName());
+                }
+            }
+        }
+        return SortedAuthorsLastNames;
+    }
 }
+

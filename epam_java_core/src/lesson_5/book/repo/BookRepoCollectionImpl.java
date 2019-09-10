@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BookRepoCollectionImpl implements BookRepo{
+public class BookRepoCollectionImpl implements BookRepo {
     @Override
     public int count() {
         return CollectionStorage.getTotalBooks();
@@ -42,6 +42,7 @@ public class BookRepoCollectionImpl implements BookRepo{
         }
         return null;
     }
+
     @Override
     public Book[] findBooksByAuthorAsArray(long authorId) {
         return findBooksByAuthorAsCollection(authorId).toArray(new Book[0]);
@@ -61,6 +62,5 @@ public class BookRepoCollectionImpl implements BookRepo{
         return found;
     }
 
-    //public List<Book> SortedByNameAsCollection() {}
-    //public Book[] SortedByNameAsArray() {}
+
 }

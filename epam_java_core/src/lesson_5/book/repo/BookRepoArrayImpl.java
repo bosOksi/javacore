@@ -3,7 +3,6 @@ package lesson_5.book.repo;
 import lesson_5.author.domain.Author;
 import lesson_5.book.domain.Book;
 import lesson_5.storage.ArrayStorage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +63,4 @@ public class BookRepoArrayImpl implements BookRepo {
         return found;
     }
 
-    //public List<Book> SortedByNameAsCollection() {}
-    //public Book[] SortedByNameAsArray() {}
 }

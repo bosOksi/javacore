@@ -3,6 +3,9 @@ package lesson_5.storage;
 import lesson_5.author.domain.Author;
 import lesson_5.book.domain.Book;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public final class ArrayStorage {
     private static final int CAPACITY = 10;
@@ -158,6 +161,13 @@ public final class ArrayStorage {
          *  [3] = NULL
          */
         authors = newAuthors;
+    }
+    public static Book[] getAllBooksNames() {
+        List<String> booksNames = new ArrayList<>();
+        for (Book book : books) {
+            booksNames.add(book.getName());
+        }
+        return booksNames.toArray(new Book[0]);
     }
 
 }
