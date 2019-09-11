@@ -1,0 +1,17 @@
+-----------
+Entity: Book
+name: "Evgeny Onegin"
+publishYear: 1990
+bookType: HandWrittenBook
+-----------
+Entity: Book
+name: "Ruslan i Ludmila"
+publishYear: 1900
+bookType: HandWrittenBook
+-----------
+Entity: Author
+lastName: "Pushkin"
+name: "Aleksandr"
+yearOfBorn: 1100
+-----------
+-----------
